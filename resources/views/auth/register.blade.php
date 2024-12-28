@@ -44,22 +44,22 @@
     
                     <!-- Name Field -->
                     <div class="mb-4">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                        <input id="name" type="text" name="name" value="{{ old('name') }}" required
+                        <label for="name" class="block text-sm font-medium mb-2 text-gray-700">Full Name</label>
+                        <input id="name" type="text" placeholder="your name" name="name" value="{{ old('name') }}" required
                             autofocus
                             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
     
                     <!-- Email Field -->
                     <div class="mb-4">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
+                        <input id="email" type="email" placeholder="Your E-Mail" name="email" value="{{ old('email') }}" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
     
                     <!-- Gender Field -->
                     <div class="mb-4">
-                        <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                        <label for="gender" class="block mb-2 text-sm font-medium text-gray-700">Gender</label>
                         <select id="gender" name="gender" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <option value="" disabled selected>Select Gender</option>
@@ -72,39 +72,39 @@
                     <!-- Date of Birth Field -->
                     <div class="flex w-full gap-2">
                         <div class="mb-4 w-6/12">
-                            <label for="dob" class="block text-sm font-medium text-gray-700">Date Of Birth</label>
+                            <label for="dob" class="block mb-2 text-sm font-medium text-gray-700">Date Of Birth</label>
                             <input id="dob" type="date" name="dob" value="{{ old('dob') }}" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
         
                         <!-- Contact Number Field -->
                         <div class="mb-4 w-6/12">
-                            <label for="mobile" class="block text-sm font-medium text-gray-700">Contact No.</label>
-                            <input id="mobile" type="tel" name="mobile" value="{{ old('mobile') }}" required
+                            <label for="mobile" class="block mb-2 text-sm font-medium text-gray-700">Contact No.</label>
+                            <input id="mobile" placeholder="+1234567890" type="tel" name="mobile" value="{{ old('mobile') }}" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm ">
                         </div>
                     </div>
     
                     <!-- Address Field -->
                     <div class="mb-4">
-                        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                        <textarea id="address" name="address" required
+                        <label for="address" class="block mb-2 text-sm font-medium text-gray-700">Address</label>
+                        <textarea id="address" placeholder="Your Address" name="address" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('address') }}</textarea>
                     </div>
     
                     <!-- Password Field -->
                     <div class="flex w-full gap-2">
-                        <div class="mb-4 w-6/12">
-                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                            <input id="password" type="password" name="password" required
+                        <div class="mb-3 w-6/12">
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-700">Password</label>
+                            <input id="password" placeholder="Password" type="password" name="password" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
         
                         <!-- Confirm Password Field -->
-                        <div class="mb-6  w-6/12">
-                            <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm
+                        <div class="mb-4  w-6/12">
+                            <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-700">Confirm
                                 Password</label>
-                            <input id="password_confirmation" type="password" name="password_confirmation" required
+                            <input id="password_confirmation" placeholder="Confirm Password" type="password" name="password_confirmation" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                     </div>
@@ -119,10 +119,12 @@
                 </form>
     
                 <!-- Already Registered Link -->
-                <div class="mt-6 text-center">
-                    <a href="{{ url('login') }}" class="text-sm text-blue-900 hover:underline">Already have an account?
-                        Log in</a>
+                <div class="mt-6 text-center flex items-center justify-center">
+                    <hr class="flex-grow border-t border-blue-900">
+                    <a href="{{ url('login') }}" class="text-sm text-blue-900 mx-4">Already have an account? Log in</a>
+                    <hr class="flex-grow border-t border-blue-900">
                 </div>
+                
             </div>
         </div>
     </div>
