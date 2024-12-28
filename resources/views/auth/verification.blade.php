@@ -64,7 +64,7 @@
             @endif --}}
 
             <!-- Login Form -->
-            <form method="POST" action="/send-otp">
+            <form method="POST" action="/verify-otp">
                 @csrf
                 <!-- Email Field -->
                 <div class="mb-4">
@@ -72,36 +72,21 @@
                     <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
                         class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 </div>
-
-                <!-- Password Field -->
-                <div class="mb-6">
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input id="password" type="password" name="password" required
+               
+                <div class="mb-4">
+                    <label for="otp" class="block text-sm font-medium text-gray-700">Enter Your Otp</label>
+                    <input id="otp" type="number" name="otp" value="" required autofocus
                         class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                </div>
-
-                <!-- Remember Me Checkbox -->
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center">
-                        <input id="remember_me" type="checkbox" name="remember"
-                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                        <label for="remember_me" class="ml-2 block text-sm text-gray-900">
-                            Remember me
-                        </label>
-                    </div>
                 </div>
 
                 <!-- Submit Button -->
                 <div>
                     <button type="submit"
                         class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                        Send otp
+                        Verify otp
                     </button>
                 </div>
             </form>
-            <div class="mt-6 text-center">
-                <a href="{{ url('register') }}" class="text-sm text-blue-600 hover:underline">Don't have an account? Register now</a>
-            </div>
         </div>
     </div>
 

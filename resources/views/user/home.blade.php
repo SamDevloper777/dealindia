@@ -1,5 +1,5 @@
 @extends('user.userBase')
-@section('title', 'Dashboard')
+@section('title', '')
 @section('content')<main class="p-6">
         <!-- Stats Section -->
         <section id="services" class="py-16">
