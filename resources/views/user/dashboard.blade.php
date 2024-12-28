@@ -3,23 +3,23 @@
 @section('content')
 <div class="flex h-screen bg-gray-100">
     <!-- Sidebar -->
-    <aside class="w-64 bg-blue-600 text-white flex flex-col">
+    <aside class="w-64 bg-gray-300 text-black flex flex-col ">
         <div class="px-4 py-4">
             <h2 class="text-2xl font-bold">Dashboard</h2>
         </div>
-        <nav class="flex-1">
+        <nav class="flex-1 text-lg">
             <ul>
                 <li>
-                    <a href="#profile" class="block px-4 py-2 hover:bg-blue-700">Profile</a>
+                    <a href="#profile" class="block px-4 py-2 hover:bg-gray-500">Profile</a>
                 </li>
                 <li>
-                    <a href="#settings" class="block px-4 py-2 hover:bg-blue-700">Settings</a>
+                    <a href="#settings" class="block px-4 py-2 hover:bg-gray-500">Settings</a>
                 </li>
                 <li>
-                    <a href="#tasks" class="block px-4 py-2 hover:bg-blue-700">Tasks</a>
+                    <a href="#tasks" class="block px-4 py-2 hover:bg-gray-500">Tasks</a>
                 </li>
                 <li>
-                    <a href="#notifications" class="block px-4 py-2 hover:bg-blue-700">Notifications</a>
+                    <a href="#notifications" class="block px-4 py-2 hover:bg-gray-500">Notifications</a>
                 </li>
             </ul>
         </nav>
@@ -36,19 +36,20 @@
     <!-- Main Content -->
     <div class="flex-1 flex flex-col">
         <!-- Navbar -->
-        <header class="bg-white shadow-sm p-4 flex items-center justify-between">
+        <header class=" shadow-sm p-4 flex items-center justify-between">
             <h1 class="text-xl font-semibold text-gray-700">Welcome, {{ auth()->user()->name }}</h1>
             <div>
-                <a href="#notifications" class="text-blue-600 hover:underline">Notifications</a>
+                <a href="#notifications" class="text-blue-600 hover:underline"><i class="bi bi-bell-fill"></i></a>
             </div>
         </header>
 
         <!-- Content -->
         <main class="flex-1 p-6">
             <!-- Section: Profile -->
-            <section id="profile" class="mb-8">
+            <div class="flex gap-4 w-full">
+            <section id="profile" class="mb-8 w-1/2 ">
                 <h2 class="text-2xl font-bold mb-4">Your Profile</h2>
-                <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="bg-white shadow-md rounded-lg p-6 h-36">
                     <p><strong>Name:</strong> {{ auth()->user()->name }}</p>
                     <p><strong>Email:</strong> {{ auth()->user()->email }}</p>
                     <p><strong>Joined:</strong> {{ auth()->user()->created_at->format('M d, Y') }}</p>
@@ -56,9 +57,9 @@
             </section>
 
             <!-- Section: Tasks -->
-            <section id="tasks" class="mb-8">
+            <section id="tasks" class="mb-8 w-1/2 ">
                 <h2 class="text-2xl font-bold mb-4">Your Tasks</h2>
-                <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="bg-white shadow-md rounded-lg p-6 h-36 ">
                     <ul class="space-y-2">
                         <li class="flex justify-between items-center">
                             <span>Complete the project report</span>
@@ -71,7 +72,7 @@
                     </ul>
                 </div>
             </section>
-
+        </div>
             <!-- Section: Settings -->
             <section id="settings" class="mb-8">
                 <h2 class="text-2xl font-bold mb-4">Settings</h2>

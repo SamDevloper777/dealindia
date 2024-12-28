@@ -19,6 +19,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <title>@yield('title') | Real India</title>
 
@@ -52,16 +53,11 @@
     </nav>
     <div class="min-h-screen flex bg-gray-100">
         <div class="flex-1 flex flex-col">
-            <!-- Navbar -->
-            <header class="bg-gray-200 text-center py-20">
-                <h1 class="text-4xl font-bold mb-4">Welcome to Deal India</h1>
-                <p class="text-lg mb-6">Your trusted partner in financial solutions.</p>
-                <a href="/login" class="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Start Now</a>
-            </header>
+            
 
             <!-- Dashboard Content -->
 
-            <div class="md:mt-20 mt-8">
+            <div class="">
                 @yield('content')
             @show
         </div>

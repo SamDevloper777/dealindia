@@ -1,10 +1,16 @@
 @extends('user.userBase')
 @section('title', '')
 @section('content')
-<main class="p-6">
+<main class="">
    
+    <!-- Navbar -->
+    <header class="bg-gray-200 text-center py-20">
+        <h1 class="text-4xl font-bold mb-4">Welcome to Deal India</h1>
+        <p class="text-lg mb-6">Your trusted partner in financial solutions.</p>
+        <a href="/login" class="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Start Now</a>
+    </header>
         <!-- Stats Section -->
-        <section id="services" class="py-16">
+        <section id="services" class="py-16 px-6">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl font-bold mb-8">Our Services</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -25,7 +31,7 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="bg-gray-200 py-16">
+        <section id="about" class="bg-gray-200 py-16 px-6">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl font-bold mb-4">About Us</h2>
                 <p class="text-lg">Real India is a leading financial services provider dedicated to empowering individuals
