@@ -50,6 +50,14 @@ class AuthController extends Controller
             return redirect()->route('login')->with('success', 'Account created successfully. Please log in.');
         }
     }
+    public function logout()
+    {
+        Auth::logout(); // Logs out the current user
+        request()->session()->invalidate(); // Invalidates the session
+        request()->session()->regenerateToken(); // Regenerates the CSRF token
+        
+        return redirect('/login')->with('success', 'You have been logged out.');
+    }
 
 
     public function sendOTP(Request $request)

@@ -47,6 +47,19 @@
                 <li><a href="#about" class="hover:underline">About</a></li>
                 <li><a href="#contact" class="hover:underline">Contact</a></li>
                 <li><a href="{{ url('register') }}" class="hover:underline">Register</a></li>
+                @guest
+                <li><a href="{{ route('login') }}" class="hover:underline">Login</a></li>
+                @endguest
+                @auth
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="hover:underline bg-transparent border-none cursor-pointer text-blue-600">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+                @endauth
 
             </ul>
         </div>

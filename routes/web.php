@@ -19,6 +19,8 @@ Route::get('/login', function () {
 Route::get('/verification', function () {
     return view('auth.verification');
 });
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 Route::get('/register', function () {
     return view('auth.register');
