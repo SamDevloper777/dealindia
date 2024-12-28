@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 class AuthController extends Controller
@@ -16,16 +17,17 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',                   
             'gender' => 'required|string',                   
-            'dob' => 'required',                   
-            'email' => 'required',                   
-            'address' => 'required',                   
-            'mobile' => 'required|digits:10|regex:/^[6789][0-9]{9}$/',                
+            'dob' => 'required|date',                   
+            'email' => 'required|email|unique:users,email',                   
+            'address' => 'required|string',                   
+            'mobile' => 'required|digits:10|regex:/^[6789][0-9]{9}$/',              
             'password' => 'required|min:8|confirmed',
         ]);
-            if ($validator->fails()) {
-                return redirect()->back()->with('error',  $validator->messages());
-            }
-        else {    
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        
             $data = User::create([
                 'name' => $request->name,                                       
                 'mobile' => $request->mobile,
@@ -33,77 +35,91 @@ class AuthController extends Controller
                 'dob' => $request->dob,
                 'email' => $request->email,
                 'address' => $request->address,
-                'password' => $request->password,       
+                'password' => Hash::make($request->password),
             ]);
-    
+
             if ($data) {
-                Mail::raw("Hello $request->name your Real Account has been Created Successfully.", function ($message) use ($request) {
+                Mail::raw("Hello $request->name, your Real Account has been Created Successfully.", function ($message) use ($request) {
                     $message->to($request->email)
                             ->subject('New Real Account Created');
                 });
-
+                return redirect()->route('login')->with('success', 'Account created successfully. Please log in.');
             }
-        }
     }
-    // Send OTP to email
+
+
     public function sendOTP(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
-            'password' => 'required|min:8|confirmed',
+            'password' => 'required|min:8',
         ]);
 
-        // Generate a random 6-digit OTP
-        $otp = rand(100000, 999999);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
-        // Store OTP in the database
-        OTP::updateOrCreate(
-            ['email' => $request->email],
-            [
-                'otp' => $otp,
-                'expires_at' => Carbon::now()->addMinutes(10), // OTP valid for 10 minutes
-            ]
-        );
+        $user = User::where('email', $request->email)->first();
 
-        // Send OTP to email
-        Mail::raw("Your OTP is: $otp", function ($message) use ($request) {
-            $message->to($request->email)
-                    ->subject('Your OTP for Login');
-        });
+        if ($user && Hash::check($request->password, $user->password)) {
+            $otp = rand(100000, 999999);
 
-        return redirect('/verification')->with('success', 'OTP sent Successfully');
+            OTP::updateOrCreate(
+                ['email' => $request->email],
+                [
+                    'otp' => $otp,
+                    'expires_at' => Carbon::now()->addMinutes(10),
+                ]
+            );
 
+            // Send OTP to email
+            try {
+                Mail::raw("Your OTP is: $otp", function ($message) use ($request) {
+                    $message->to($request->email)
+                            ->subject('Your OTP for Login');
+                });
 
-        // return response()->json(['message' => 'OTP sent successfully!']);
+                return redirect('/verification')->with('success', 'OTP sent successfully.');
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to send OTP. Please try again.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Invalid email or password.');
+        }
     }
+
 
     public function verifyOTP(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
             'otp' => 'required|numeric',
         ]);
 
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $otpRecord = OTP::where('email', $request->email)->first();
 
-        // Validate OTP
         if (!$otpRecord || $otpRecord->otp !== $request->otp) {
             return redirect()->back()->with('error', 'Invalid OTP.');
         }
 
-        // Check if OTP has expired
         if (Carbon::now()->greaterThan($otpRecord->expires_at)) {
             return redirect()->back()->with('error', 'OTP has expired.');
         }
 
-        // Clean up OTP record
         $otpRecord->delete();
 
-        // Log the user in
         $user = User::where('email', $request->email)->first();
-        Auth::login($user);
 
-        return redirect('/dashboard')->with('success', 'Login Successfully');
+        if ($user) {
+            Auth::login($user);
+            $request->session()->regenerate();
+            return redirect('/dashboard')->with('success', 'Login successful.');
+        }
+        return redirect()->back()->with('error', 'Failed to log in.');
     }
+
 }

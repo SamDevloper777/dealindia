@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 
 Route::post('/send-otp', [AuthController::class, 'sendOTP'])->middleware('throttle:5,1');
 Route::post('/verify-otp', [AuthController::class, 'verifyOTP']);
-// Route::post('/register',[UserController::class,"adminRegister"])->name("admin.register");
+Route::post('/new-register',[AuthController::class,"register"])->name("user.register");
 
 // Route::match(['get',"post"],'/admin-login',[UserController::class,"adminLogin"])->name("login");
 

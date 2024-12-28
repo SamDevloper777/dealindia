@@ -35,11 +35,9 @@
          @endif
             <div class=" w-full mx-12 p-8">
                 <h2 class="text-4xl font-semibold text-center text-gray-800 mb-6"  style="font-family: 'Roboto Condensed', serif;">Create An Account</h2>
-    
-               
-    
+
                 <!-- Register Form -->
-                <form method="POST" action="">
+                <form method="POST" action="{{route('user.register')}}">
                     @csrf
     
                     <!-- Name Field -->
@@ -61,7 +59,7 @@
                     <div class="mb-4">
                         <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
                         <select id="gender" name="gender" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value={{ old('address') }}>
                             <option value="" disabled selected>Select Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
