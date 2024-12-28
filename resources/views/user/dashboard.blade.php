@@ -1,5 +1,6 @@
 @extends('user.userBase')
-@section('title', 'Dashboard')
+@section('title', '')
+@section('content')
 <div class="flex h-screen bg-gray-100">
     <!-- Sidebar -->
     <aside class="w-64 bg-blue-600 text-white flex flex-col">
