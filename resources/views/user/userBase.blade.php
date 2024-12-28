@@ -38,7 +38,7 @@
 <body>
     <nav class="bg-blue-600 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold">Real India</a>
+            <a href="#" class="text-2xl font-bold">Deal India</a>
             <ul class="flex space-x-4">
                 <li><a href="#services" class="hover:underline">Services</a></li>
                 <li><a href="#services" class="hover:underline">Register</a></li>
