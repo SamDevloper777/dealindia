@@ -120,10 +120,7 @@
                 <hr class="flex-grow border-t border-blue-900">
                 <a href="{{ url('register') }}" class="text-sm text-blue-900 hover:underline mx-4">Don't have an account? Register now</a>
                 <hr class="flex-grow border-t border-blue-900">
-            <div class="mt-6 text-center">
-                <a href="{{ url('register') }}" class="text-sm text-blue-600 hover:underline">Don't have an account?
-                    Register now</a>
-            </div>
+            
         </div>
     </div>
 </div>
