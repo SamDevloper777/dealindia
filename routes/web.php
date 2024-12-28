@@ -14,7 +14,7 @@ Route::get('/admin', function () {
 
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->name('login');
 
 Route::get('/verification', function () {
     return view('auth.verification');

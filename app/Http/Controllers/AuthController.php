@@ -11,12 +11,46 @@ use Validator;
 
 class AuthController extends Controller
 {
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',                   
+            'gender' => 'required|string',                   
+            'dob' => 'required',                   
+            'email' => 'required',                   
+            'address' => 'required',                   
+            'mobile' => 'required|digits:10|regex:/^[6789][0-9]{9}$/',                
+            'password' => 'required|min:8|confirmed',
+        ]);
+            if ($validator->fails()) {
+                return redirect()->back()->with('error',  $validator->messages());
+            }
+        else {    
+            $data = User::create([
+                'name' => $request->name,                                       
+                'mobile' => $request->mobile,
+                'gender' => $request->gender,
+                'dob' => $request->dob,
+                'email' => $request->email,
+                'address' => $request->address,
+                'password' => $request->password,       
+            ]);
+    
+            if ($data) {
+                Mail::raw("Hello $request->name your Real Account has been Created Successfully.", function ($message) use ($request) {
+                    $message->to($request->email)
+                            ->subject('New Real Account Created');
+                });
+
+            }
+        }
+    }
     // Send OTP to email
     public function sendOTP(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            // 'mobile' => 'required|digits:10|regex:/^[0-9]{10}$/',                   
             'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:8|confirmed',
         ]);
 
         // Generate a random 6-digit OTP
@@ -71,8 +105,5 @@ class AuthController extends Controller
         Auth::login($user);
 
         return redirect('/dashboard')->with('success', 'Login Successfully');
-
-
-        // return response()->json(['message' => 'Login successful.']);
     }
 }
