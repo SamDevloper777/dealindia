@@ -65,10 +65,7 @@
                 @yield('content')
             @show
         </div>
-
-        <footer class="bg-blue-900 text-white text-center py-4">
-            <p>&copy; {{ date('Y') }} Real India. All rights reserved.</p>
-        </footer>
+      @include('user.include.footer')
 
     </div>
 </div>
