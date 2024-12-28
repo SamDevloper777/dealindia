@@ -36,14 +36,17 @@
 </head>
 
 <body>
-    <nav class="bg-blue-600 text-white p-4">
+    <nav class="bg-blue-900 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold">Deal India</a>
+            <a href="#" class="text-2xl font-bold">
+                <img src="logo.png" width="15%"  alt="">
+            </a>
             <ul class="flex space-x-4">
                 <li><a href="#services" class="hover:underline">Services</a></li>
-                <li><a href="#services" class="hover:underline">Register</a></li>
-                <li><a href="#about" class="hover:underline">About Us</a></li>
+                <li><a href="#about" class="hover:underline">About</a></li>
                 <li><a href="#contact" class="hover:underline">Contact</a></li>
+                <li><a href="{{ url('register') }}" class="hover:underline">Register</a></li>
+
             </ul>
         </div>
     </nav>
@@ -51,9 +54,9 @@
         <div class="flex-1 flex flex-col">
             <!-- Navbar -->
             <header class="bg-gray-200 text-center py-20">
-                <h1 class="text-4xl font-bold mb-4">Welcome to Real India</h1>
+                <h1 class="text-4xl font-bold mb-4">Welcome to Deal India</h1>
                 <p class="text-lg mb-6">Your trusted partner in financial solutions.</p>
-                <a href="/login" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Start Now</a>
+                <a href="/login" class="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Start Now</a>
             </header>
 
             <!-- Dashboard Content -->
@@ -63,7 +66,7 @@
             @show
         </div>
 
-        <footer class="bg-blue-600 text-white text-center py-4">
+        <footer class="bg-blue-900 text-white text-center py-4">
             <p>&copy; {{ date('Y') }} Real India. All rights reserved.</p>
         </footer>
 

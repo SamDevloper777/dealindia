@@ -2,6 +2,7 @@
 @section('title', '')
 @section('content')
 <main class="p-6">
+   
         <!-- Stats Section -->
         <section id="services" class="py-16">
             <div class="container mx-auto text-center">
@@ -50,7 +51,7 @@
                         <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg" rows="5" placeholder="Your Message" required></textarea>
                     </div>
                     <button type="submit"
-                        class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Submit</button>
+                        class="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Submit</button>
                 </form>
             </div>
         </section>
